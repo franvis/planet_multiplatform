@@ -1,0 +1,3 @@
+rootProject.name = 'planets_kotlin_mpp'
+
+enableFeaturePreview('GRADLE_METADATA')
