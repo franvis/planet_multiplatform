@@ -16,6 +16,15 @@ version = "0.0.1"
 
 kotlin {
     jvm("android")
+    cocoapods {
+        // Configure fields required by CocoaPods.
+        summary = "Some description for a Kotlin/Native module"
+        homepage = "Link to a Kotlin/Native module homepage"
+
+        // The name of the produced framework can be changed.
+        // The name of the Gradle project is used here by default.
+        frameworkName = "planet_kotlin_mpp"
+    }
     // This is for iPhone simulator
     // Switch here to iosArm64 (or iosArm32) to build library for iPhone device
     val buildForDevice = project.findProperty("kotlin.native.cocoapods.target") == "ios_arm"
