@@ -16,19 +16,16 @@ class PlanetService(private val platformDispatcher: PlatformDispatcher) {
                 val result = HttpClient() {
                     install(JsonFeature) {
                         serializer = KotlinxSerializer().apply {
-                            register(NextDayDeliveryResponse.serializer())
+                            register(PlanetDto.serializer())
                         }
                     }
-                }.get<NextDayDeliveryResponse>("https://y3fsc8hysh.execute-api.us-east-2.amazonaws.com/training/planets")
+                }.get<List<PlanetDto>>("https://y3fsc8hysh.execute-api.us-east-2.amazonaws.com/training/planets")
 
-                callback(result.planets.map{it.mapToDomain()})
+                callback(result.map{it.mapToDomain()})
             }
         }
     }
 }
-
-@Serializable
-data class NextDayDeliveryResponse(val planets: List<PlanetDto>)
 
 @Serializable
 data class PlanetDto(
